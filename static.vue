@@ -44,28 +44,30 @@
 				placeholderText="选择性别" @currentIndexChanged="setGender"></q-combox>
 			<q-view horizontal-size-policy="ShrinkFlag"></q-view>
 		</q-view>
-		
+
 		<!-- 进度条 -->
 		<q-view layout="hbox">
 			<q-label text="进度条" id="labelView"></q-label>
 			<q-progress-bar :value="progressBarVal" minimum="0" maximum="100" />
 		</q-view>
-		
+
 		<!-- 编辑框 -->
 		<q-view layout="hbox">
-			<q-source-editor 
-				font-size="13" 
-				:text='editorText' 
-				languageId='markdown' 
-				:word-wrap='true'
-				:line-number-visible='false' end-at-last-line="true" 
-				@modified="setEditor">
+			<q-source-editor font-size="13" :text='editorText' languageId='markdown' :word-wrap='true'
+				:line-number-visible='false' end-at-last-line="true" @modified="setEditor">
 			</q-source-editor>
 		</q-view>
-		
+
+		<q-list-view id="QListView" currentIndex="-1" @currentRowChanged="currentRowChanged">
+			<q-list-item layout='hbox' v-for="item in citys">
+				<q-label :text="item" :style="{color: item == selectedCity ? '#4EAB57': ''}" :data-value="item"></q-label>
+				<q-view horizontal-size-policy='Expanding'></q-view>
+			</q-list-item>
+		</q-list-view>
+
 		<!-- vertical-size-policy 垂直填充 -->
 		<q-view vertical-size-policy="Expanding"></q-view>
-		
+
 	</q-scroll-view>
 </template>
 
@@ -78,6 +80,8 @@
 				checkBox1: true,
 				checkBox2: false,
 				radio: 1,
+				selectedCity: "",
+				citys: ["北京", "上海", "南京", "广州"],
 				genderList: ["", "男", "女"],
 				genderName: '',
 				genderIndex: 0,
@@ -98,14 +102,21 @@
 			clickBtn() {},
 
 			setGender() {},
-			
+
 			setProgressBar() {
 				this.progressBarVal = this.progressBarVal + 10;
 			},
-			
+
 			setEditor(e) {
 				console.error("-----", e.target.text)
-			}
+			},
+
+			async currentRowChanged(e) {
+				const idx = e.target.currentRow;
+				this.selectedCity = this.citys[idx];
+				console.log("-->", this.selectedCity)
+				await this.updateUi()
+			},
 		},
 	}
 </script>
@@ -189,5 +200,18 @@
 	QComboBox QAbstractItemView::item:hover,
 	QComboBox QAbstractItemView::item:selected {
 		background: #FAFFFA;
+	}
+
+	#QListView {
+		background: #FFFEFA;
+		border: 1px solid #e5e5e5;
+	}
+
+	#QListView::item {
+		padding: 5px;
+	}
+	
+	#QListView::item:selected, #list::item:hover {
+	  background-color: transparent;
 	}
 </style>

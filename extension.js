@@ -16,7 +16,9 @@ async function showUI(context) {
 			"type": "vue:UITest",
 			"name": "UITest"
 		}]
-	});
+	}).then((res)=> {
+		console.log(JSON.stringify(res, null, 4));
+	})
 	return true;
 };
 
