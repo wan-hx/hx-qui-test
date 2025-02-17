@@ -12,6 +12,20 @@ async function showUI(context) {
         width: 800,
         height: 680,
         showModal: false,
+        validate: async function(formData) {
+            this.showError("");
+            let data = formData.UITest;
+            // console.log(formData);
+            let { password } = data;
+            if (password == 0 || /^\s+$/.test(password) ) {
+                this.showError("password不能为空哦！");
+                return;
+            };
+            return true;
+        },
+        onChanged: function (field, value, formData) {
+            console.log("调用changed函数", value);
+        },
         formItems: [{
             "type": "vue:UITest",
             "name": "UITest",
