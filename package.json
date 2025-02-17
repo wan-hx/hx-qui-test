@@ -1,39 +1,47 @@
 {
-	"id": "your extension id",
-	"name": "your extension name",
-	"description": "your extension description",
-	"displayName": "your extension display name",
-	"version": "0.0.0",
-	"publisher": "your name",
-	"engines": {
-		"HBuilderX": "^2.7.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"main": "./extension",
-	"activationEvents": [
-		"onCommand:extension.helloWorld"
-	],
-	"contributes": {
-		"commands": [{
-			"command": "extension.helloWorld",
-			"title": "Hello World"
-		}],
-		"menus": {
-			"editor/context": [{
-					"command": "extension.helloWorld",
-					"group": "z_commands",
-					"when": "editorTextFocus"
-				},
-				{
-					"group": "z_commands"
-				}
-			]
-		}
-	},
-	"extensionDependencies": [
-		"plugin-manager"
-	],
-	"dependencies": {}
+    "id": "hx-qui-test",
+    "name": "hx-qui-test",
+    "description": "hx-qui-test",
+    "displayName": "hx-qui-test",
+    "version": "1.0.0",
+    "publisher": "hx-qui-test",
+    "engines": {
+        "HBuilderX": "^2.7.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./extension",
+    "activationEvents": [
+        "*"
+    ],
+    "contributes": {
+        "customEditors": [{
+            "viewType": "abcEditor",
+            "displayName": "Cat Scratch",
+            "selector": [{
+                "fileNamePattern": "*.abc"
+            }],
+            "priority": 999
+        }],
+        "commands": [{
+            "command": "extension.helloWorld",
+            "title": "Hello World"
+        }],
+        "menus": {
+            "editor/context": [{
+                    "command": "extension.helloWorld",
+                    "group": "z_commands",
+                    "when": "editorTextFocus"
+                },
+                {
+                    "group": "z_commands"
+                }
+            ]
+        }
+    },
+    "extensionDependencies": [
+        "plugin-manager"
+    ],
+    "dependencies": {}
 }
