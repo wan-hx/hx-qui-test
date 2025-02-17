@@ -11,8 +11,8 @@
         </q-view>
         <q-view layout='hbox'>
             <q-label text="密码" id="labelView"></q-label>
-            <q-input :text='password' @textChanged="el_set" 
-                id="elInput" 
+            <q-input :text='password' @textChanged="el_set"
+                id="elInput"
                 accessibleName="password"
                 placeholderText="请输入密码, 长度8-32"></q-input>
         </q-view>
@@ -45,11 +45,11 @@
         <!-- 下拉框 -->
         <q-view layout="hbox">
             <q-label text="下拉选择框" id="labelView"></q-label>
-            <q-combox :items='genderList' 
-                :currentIndex='genderIndex' 
-                :currentText='genderName' 
+            <q-combox :items='genderList'
+                :currentIndex='genderIndex'
+                :currentText='genderName'
                 :stretch-factor='1'
-                placeholderText="选择性别" 
+                placeholderText="选择性别"
                 accessibleName="genderName"
                 @currentIndexChanged="el_set"></q-combox>
             <q-view horizontal-size-policy="ShrinkFlag"></q-view>
@@ -63,11 +63,11 @@
 
         <!-- 编辑框 -->
         <q-view layout="hbox">
-            <q-source-editor font-size="13" 
-                :text='editorText' languageId='markdown' 
+            <q-source-editor font-size="13"
+                :text='editorText' languageId='markdown'
                 :word-wrap='true'
                 accessibleName="editorText"
-                :line-number-visible='false' end-at-last-line="true" 
+                :line-number-visible='false' end-at-last-line="true"
                 @modified="el_set">
             </q-source-editor>
         </q-view>
@@ -126,7 +126,9 @@
                 this.updateUi();
             },
 
-            clickBtn() {},
+            clickBtn() {
+                this.$mitt.emit('showMsg', "这是一条从vue页面传递的消息");
+            },
 
             setProgressBar() {
                 this.progressBarVal = this.progressBarVal + 10;
@@ -178,23 +180,23 @@
         background: #E1F0E1;
         border-color: #0D9E4D;
     }
-    
+
     #elRadio::indicator::unchecked {
         image: url(:/hxui/resource/rdbt.png);
     }
-    
+
     #elRadio::indicator::unchecked:hover {
         image: url(:/hxui/resource/rdbt-hover.png);
     }
-    
+
     #elRadio::indicator::checked {
         image: url(:/hxui/resource/rdbt-checked.png);
     }
-    
+
     #elCheckBox::indicator::unchecked {
     	image: url(:/hxui/resource/chbx.png);
     }
-    
+
     #elCheckBox::indicator::checked {
         image: url(:/hxui/resource/chbx-checked.png);
     }
@@ -250,7 +252,7 @@
     #QListView::item {
         padding: 5px;
     }
-    
+
     #QListView::item:selected, #list::item:hover {
       background-color: transparent;
     }
