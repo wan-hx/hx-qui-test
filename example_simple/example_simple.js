@@ -2,7 +2,7 @@ var hx = require("hbuilderx");
 var path = require('path');
 
 async function simple_example(context) {
-    hx.vue.defineComponent('UITest', path.resolve(context.extensionPath, "./example_simple.vue"));
+    hx.vue.defineComponent('UITest', path.resolve(__dirname, "./example_simple.vue"));
 
     let form = await hx.window.showFormDialog({
         title: "测试示例",
