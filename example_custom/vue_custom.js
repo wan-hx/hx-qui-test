@@ -16,24 +16,22 @@ class CatCustomDocument extends CustomDocument {
     }
 }
 
+hx.vue.defineComponent('abcEditor2', path.resolve(__dirname, './vue_custom.vue'));
+
 // 继承CustomEditorProvider，实现必要的方法
 class CatCustomEditorProvider extends CustomEditorProvider {
     constructor(context) {
         super()
     }
     openCustomDocument(uri) {
-        // hx.vue.defineComponent('abcEditor2',
-        //     "/Users/hx/Documents/HBuilderProjects/_tmp_2/hx-qui-test/example_2.vue");
+        console.log("[uri] ->", uri)
         return Promise.resolve(new CatCustomDocument(uri));
     }
     resolveCustomEditor(document) {
-        return hx.vue.createComponent("abcEditor", {})
+        console.log("[document] ->", document);
+        const a = hx.vue.createComponent("abcEditor2");
+        return a
     }
-    // resolveCustomEditor(document) {
-    //     // 关联CustomDocument与vueApp
-    //     // return hx.vue.createComponent("abcEditor2");
-    //      return hx.vue.createComponent("abcEditor2", {});
-    // }
     saveCustomDocument(document) {
         return true;
     }

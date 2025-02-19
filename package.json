@@ -17,7 +17,7 @@
     ],
     "contributes": {
         "customEditors": [{
-            "viewType": "abcEditor",
+            "viewType": "vue:abcEditor",
             "displayName": "Cat Scratch",
             "selector": [{
                 "fileNamePattern": "*.abc"
