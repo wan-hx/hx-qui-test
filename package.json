@@ -15,6 +15,9 @@
     "activationEvents": [
         "*"
     ],
+    "activatedEvents":[
+        "onView:vue:abcView"
+    ],
     "contributes": {
         "customEditors": [{
             "viewType": "vue:abcEditor",
@@ -24,6 +27,18 @@
             }],
             "priority": 999
         }],
+        "viewsContainers": {
+            "activitybar": [{
+                "id": "abcView",
+                "title": "abcView"
+            }]
+        },
+        "views": {
+            "abcView": [{
+                "id": "abcView",
+                "title": "abcView"
+            }]
+        },
         "commands": [{
             "command": "extension.helloWorld",
             "title": "Hello World"

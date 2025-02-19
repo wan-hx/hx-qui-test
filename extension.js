@@ -4,16 +4,20 @@ const path = require('path');
 const simple_example = require('./example_simple/example_simple.js');
 const CatCustomEditorProvider = require('./example_custom/vue_custom.js');
 
-async function defineVue(context) {
-    const vueFile = path.resolve(context.extensionPath, "./example_custom/vue_custom.vue")
-    await hx.vue.defineComponent('abcEditor2', vueFile);
-};
 
 function activate(context) {
 
     // defineVue(context);
     hx.window.registerCustomEditorProvider("abcEditor", new CatCustomEditorProvider());
-    // hx.vue.defineComponent('abcEditor', path.resolve(context.extensionPath, "./example_custom/vue_custom.vue"));
+
+    // hx.window.registerCustomEditorProvider("abcView", new CatViewEditorProvider());
+
+    // hx.vue.defineComponent('abcView2', path.resolve(__dirname, './example_view/vue_view.vue'));
+    // hx.window.registerViewProvider("abcView",{
+    //     create(){
+    //         return hx.vue.createComponent("abcView2");
+    //     }
+    // });
 
     let disposable = hx.commands.registerCommand('extension.helloWorld', async (argv) => {
         await simple_example(context);
