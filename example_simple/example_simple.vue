@@ -2,26 +2,52 @@
     <q-scroll-view layout='vbox' id="scrollView">
 
         <!-- 输入框 -->
+        <!--
+            alignment文档：https://doc.qt.io/qt-6/qt.html#AlignmentFlag-enum
+        -->
         <q-view layout='hbox'>
-            <q-label text="用户名" id="labelView"></q-label>
+            <q-label text="用户密码" id="labelView" alignment="AlignRight|AlignVCenter"></q-label>
             <q-input :text='username' @textChanged="el_set"
                 id="elInput"
                 accessibleName="username"
-                placeholderText="请输入邮箱, 格式xx@xx.com"></q-input>
-        </q-view>
-        <q-view layout='hbox'>
-            <q-label text="密码" id="labelView"></q-label>
+                clearButtonEnabled='true'
+                placeholderText="请输入邮箱, 格式xx@xx.com"
+            ></q-input>
             <q-input :text='password' @textChanged="el_set"
                 id="elInput"
+                maxLength=8
                 accessibleName="password"
-                placeholderText="请输入密码, 长度8-32"></q-input>
+                clearButtonEnabled='true'
+                placeholderText="请输入密码, 长度6-8"
+            ></q-input>
+        </q-view>
+        <q-view layout='hbox'>
+            <q-label text="用户密码" id="labelView" alignment="AlignRight|AlignVCenter"></q-label>
+            <q-input
+                id="elInput"
+                readOnly='true'
+                placeholderText="此输入框仅读,无法输入"
+            ></q-input>
+        </q-view>
+
+        <!-- 下拉框 -->
+        <q-view layout="hbox">
+            <q-label text="下拉选择框" id="labelView"></q-label>
+            <q-combox :items='genderList'
+                :currentIndex='genderIndex'
+                :currentText='genderName'
+                :stretch-factor='1'
+                placeholderText="选择性别"
+                accessibleName="genderName"
+                @currentIndexChanged="el_set"></q-combox>
+            <q-view horizontal-size-policy="ShrinkFlag"></q-view>
         </q-view>
 
         <!-- 复选框 -->
         <q-view layout='hbox'>
             <q-label text="复选框" id="labelView"></q-label>
             <q-checkbox id="elCheckBox" text="大米" :checked='checkBox1' />
-            <q-checkbox id="elCheckBox" text="小米" :checked='checkBox2' />
+            <q-checkbox id="elCheckBox" text="小米" :checked='checkBox2' style="margin-left: 10px;" />
             <!-- horizontal-size-policy 横向填充 -->
             <q-view horizontal-size-policy="Expanding"></q-view>
         </q-view>
@@ -40,21 +66,9 @@
 
         <!-- 按钮 -->
         <q-view layout='hbox'>
-            <q-button id="elButton" text="按钮" @clicked='clickBtn'></q-button>
+            <q-button text="默认按钮" @clicked='clickBtn'></q-button>
+            <q-button id="elButton" text="定制按钮" @clicked='clickBtn'></q-button>
             <q-view horizontal-size-policy="Expanding"></q-view>
-        </q-view>
-
-        <!-- 下拉框 -->
-        <q-view layout="hbox">
-            <q-label text="下拉选择框" id="labelView"></q-label>
-            <q-combox :items='genderList'
-                :currentIndex='genderIndex'
-                :currentText='genderName'
-                :stretch-factor='1'
-                placeholderText="选择性别"
-                accessibleName="genderName"
-                @currentIndexChanged="el_set"></q-combox>
-            <q-view horizontal-size-policy="ShrinkFlag"></q-view>
         </q-view>
 
         <!-- 编辑框 -->
@@ -157,6 +171,7 @@
 
     #labelView {
         min-width: 50px;
+        text-align: right;
     }
 
     #elInput {
@@ -176,11 +191,12 @@
         border-radius: 5px;
         width: 50px;
         padding: 5px 10px;
+        font-size: 12px;
     }
 
     #elButton:pressed {
-        background: #E1F0E1;
-        border-color: #0D9E4D;
+        background: #0D9E4D;
+        color: #fff;
     }
 
     #elRadio {

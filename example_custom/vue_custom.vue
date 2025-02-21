@@ -1,14 +1,15 @@
 <template>
-    <q-view layout='vbox'>
+    <q-scroll-view layout='vbox' id="scrollView">
         <q-view layout='hbox'>
             <q-label text="用户名" id="labelView"></q-label>
             <q-input :text='username' id="elInput" accessibleName="username"
-                placeholderText="请输入邮箱, 格式xx@xx.com"></q-input>
-
+                placeholderText="请输入邮箱, 格式xx@xx.com">
+            </q-input>
         </q-view>
+
         <!-- vertical-size-policy 垂直填充 -->
         <q-view vertical-size-policy="Expanding"></q-view>
-    </q-view>
+    </q-scroll-view>
 </template>
 
 <script>
@@ -24,6 +25,11 @@
 <style>
     * {
         background: transparent;
+    }
+
+    #scrollView {
+        width: 100%;
+        justify-content: start;
     }
 
     #elInput {

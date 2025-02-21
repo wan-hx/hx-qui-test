@@ -31,7 +31,7 @@ async function simple_example(context) {
             "name": "UITest",
             //value: 会覆盖初始的this.data
             "value": {
-                "username": "happy"
+                "username": "xx@xx.com"
             },
             // event：可在vue中调用里面的方法
             event: {
