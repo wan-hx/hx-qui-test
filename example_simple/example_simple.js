@@ -24,16 +24,16 @@ async function simple_example(context) {
             return true;
         },
         onChanged: function (field, value, formData) {
-            console.log("调用changed函数", value);
+            // console.log("调用changed函数", value);
         },
         formItems: [{
             "type": "vue:UITest",
             "name": "UITest",
             //value: 会覆盖初始的this.data
-            "value": {
-                "username": "xx@xx.com"
-            },
-            // event：可在vue中调用里面的方法
+            // "value": {
+            //     "username": "xx@xx.com"
+            // },
+            // // event：可在vue中调用里面的方法
             event: {
                 showMsg(msg) {
                     hx.window.showInformationMessage(msg);

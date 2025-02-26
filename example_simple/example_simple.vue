@@ -7,7 +7,12 @@
         -->
         <q-view layout='hbox'>
             <q-label text="用户密码" id="labelView" alignment="AlignRight|AlignVCenter"></q-label>
-            <q-input :text='username' @textChanged="el_set"
+            <q-input :text='username'
+                @textChanged="el_set"
+                @returnPressed="event_enter"
+                @textEdited="event_textEdited"
+                @cursorPositionChanged="event_cursorPositionChanged"
+                @inputRejected="event_inputRejected"
                 id="elInput"
                 accessibleName="username"
                 clearButtonEnabled='true'
@@ -19,6 +24,7 @@
                 accessibleName="password"
                 clearButtonEnabled='true'
                 placeholderText="请输入密码, 长度6-8"
+                echoMode="Password"
             ></q-input>
         </q-view>
         <q-view layout='hbox'>
@@ -31,7 +37,7 @@
         </q-view>
 
         <!-- 下拉框 -->
-        <q-view layout="hbox">
+       <q-view layout="hbox">
             <q-label text="下拉选择框" id="labelView"></q-label>
             <q-combox :items='genderList'
                 :currentIndex='genderIndex'
@@ -65,14 +71,14 @@
         </q-view>
 
         <!-- 按钮 -->
-        <q-view layout='hbox'>
+       <q-view layout='hbox'>
             <q-button text="默认按钮" @clicked='clickBtn'></q-button>
             <q-button id="elButton" text="定制按钮" @clicked='clickBtn'></q-button>
             <q-view horizontal-size-policy="Expanding"></q-view>
         </q-view>
 
         <!-- 编辑框 -->
-        <q-view layout="hbox">
+       <q-view layout="hbox">
             <q-source-editor font-size="13"
                 :text='editorText' languageId='markdown'
                 :word-wrap='true'
@@ -82,9 +88,15 @@
             </q-source-editor>
         </q-view>
 
-        <q-list-view id="QListView" currentIndex="-1" @currentRowChanged="currentRowChanged">
-            <q-list-item layout='hbox' v-for="item in citys">
-                <q-label :text="item" :style="{color: item == selectedCity ? '#4EAB57': ''}" :data-value="item"></q-label>
+       <q-list-view id="QListView" currentIndex="-1"
+            @currentRowChanged="currentRowChanged"
+            @itemClicked="event_itemClicked"
+            @itemDoubleClicked="event_itemDoubleClicked">
+            <q-list-item layout='hbox' v-for="item in citys" toolTip="this is toolTip">
+                <q-label
+                    :text="item"
+                    :style="{color: item == selectedCity ? '#4EAB57': ''}"
+                    :data-value="item"></q-label>
                 <q-view horizontal-size-policy='Expanding'></q-view>
             </q-list-item>
         </q-list-view>
@@ -155,6 +167,38 @@
                 // console.log("-->", this.selectedCity);
                 await this.updateUi()
             },
+
+            async event_enter() {
+                // console.log("[事件]......回车事件......");
+            },
+
+            async event_textEdited() {
+                // console.log("[事件]......textEdited......");
+            },
+
+            async event_cursorPositionChanged(e) {
+                // console.log("--->event_cursorPositionChanged", e);
+            },
+
+            async event_inputRejected() {
+                // console.log("--->event_inputRejected", e);
+            },
+
+            async event_focusInEvent() {
+                console.log("===== event_focusInEvent");
+            },
+
+            async event_itemDoubleClicked() {
+                console.log("===== event_itemDoubleClicked");
+            },
+
+            async event_itemClicked() {
+                console.log("===== event_itemClicked");
+            },
+
+            async event_itemSelectionChanged() {
+                console.log("===== event_itemSelectionChanged");
+            }
         },
     }
 </script>
